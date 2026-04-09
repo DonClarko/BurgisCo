@@ -10,20 +10,42 @@ import { Ionicons } from '@expo/vector-icons';
 import { COLORS } from '../constants/theme';
 import { ROUTE_STOPS } from '../constants/mockData';
 import { useLanguage } from '../context/LanguageContext';
+import RouteMap from '../components/RouteMap';
 
 export default function RouteDetailsScreen({ navigation }) {
   const { t } = useLanguage();
+
+  // Compute map region from stop coordinates
+  const lats = ROUTE_STOPS.map(s => s.lat);
+  const lngs = ROUTE_STOPS.map(s => s.lng);
+  const minLat = Math.min(...lats);
+  const maxLat = Math.max(...lats);
+  const minLng = Math.min(...lngs);
+  const maxLng = Math.max(...lngs);
+  const midLat = (minLat + maxLat) / 2;
+  const midLng = (minLng + maxLng) / 2;
+  const deltaLat = (maxLat - minLat) * 1.4 || 0.05;
+  const deltaLng = (maxLng - minLng) * 1.4 || 0.05;
+
+  const routeCoords = ROUTE_STOPS.map(s => ({ latitude: s.lat, longitude: s.lng }));
+
   return (
     <View style={styles.container}>
-      {/* Map placeholder */}
+      {/* Map */}
       <View style={styles.mapArea}>
+        <RouteMap
+          stops={ROUTE_STOPS}
+          region={{
+            latitude: midLat,
+            longitude: midLng,
+            latitudeDelta: deltaLat,
+            longitudeDelta: deltaLng,
+          }}
+          routeCoords={routeCoords}
+        />
         <TouchableOpacity style={styles.backBtn} onPress={() => navigation.goBack()}>
           <Ionicons name="chevron-back" size={20} color={COLORS.textPrimary} />
         </TouchableOpacity>
-        <View style={styles.mapContent}>
-          <Ionicons name="map" size={48} color={COLORS.primary} />
-          <Text style={styles.mapLabel}>{t('routeMapLabel')}</Text>
-        </View>
       </View>
 
       {/* Floating route summary card */}
@@ -106,10 +128,8 @@ const styles = StyleSheet.create({
     backgroundColor: '#F7F7FC',
   },
   mapArea: {
-    height: 200,
-    backgroundColor: 'rgba(198,40,40,0.06)',
-    justifyContent: 'center',
-    alignItems: 'center',
+    height: 280,
+    backgroundColor: '#E8E8F0',
   },
   backBtn: {
     position: 'absolute',
@@ -127,15 +147,6 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.08,
     shadowRadius: 6,
     elevation: 3,
-  },
-  mapContent: {
-    alignItems: 'center',
-  },
-  mapLabel: {
-    fontSize: 13,
-    color: COLORS.primary,
-    marginTop: 6,
-    fontWeight: '600',
   },
   summaryCard: {
     backgroundColor: COLORS.white,

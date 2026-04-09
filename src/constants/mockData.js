@@ -37,12 +37,12 @@ export const BUSES = [
 ];
 
 export const ROUTE_STOPS = [
-  { name: 'Batangas City Grand Terminal', distance: 'Arrived', time: '6:30am', status: 'On Time' },
-  { name: 'Balagtas', distance: '3km', time: '6:40am', status: 'On Time' },
-  { name: 'Cuenca', distance: '8km', time: '6:52am', status: '3min Delay' },
-  { name: 'Alitagtag', distance: '12km', time: '7:00am', status: 'On Time' },
-  { name: 'Taal', distance: '16km', time: '7:08am', status: 'On Time' },
-  { name: 'Lipa City Terminal', distance: '25km', time: '7:15am', status: 'On Time' },
+  { name: 'Batangas City Grand Terminal', distance: 'Arrived', time: '6:30am', status: 'On Time', lat: 13.7565, lng: 121.0583 },
+  { name: 'Balagtas', distance: '3km', time: '6:40am', status: 'On Time', lat: 13.7810, lng: 121.0890 },
+  { name: 'Cuenca', distance: '8km', time: '6:52am', status: '3min Delay', lat: 13.8230, lng: 121.0720 },
+  { name: 'Alitagtag', distance: '12km', time: '7:00am', status: 'On Time', lat: 13.8580, lng: 121.0260 },
+  { name: 'Taal', distance: '16km', time: '7:08am', status: 'On Time', lat: 13.8800, lng: 121.0100 },
+  { name: 'Lipa City Terminal', distance: '25km', time: '7:15am', status: 'On Time', lat: 13.9416, lng: 121.1636 },
 ];
 
 export const RECENT_ROUTES = [
