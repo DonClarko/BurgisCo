@@ -1,0 +1,32 @@
+{
+  "expo": {
+    "name": "SanDaan",
+    "slug": "sandaan",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "userInterfaceStyle": "light",
+    "newArchEnabled": true,
+    "splash": {
+      "backgroundColor": "#B71C1C",
+      "resizeMode": "contain"
+    },
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "com.sandaan.app"
+    },
+    "android": {
+      "adaptiveIcon": {
+        "backgroundColor": "#B71C1C"
+      },
+      "package": "com.sandaan.app"
+    },
+    "web": {
+      "favicon": "./assets/favicon.png"
+    },
+    "plugins": [
+      "expo-asset",
+      "expo-font"
+    ]
+  }
+}
